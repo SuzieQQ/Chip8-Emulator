@@ -9,3 +9,4 @@ CHIP-8 is an interpretted programming language developed by Joseph Weisbecker in
 ![Screenshot 6](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/suzieq.png)
 ![Screenshot 7](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/test.png)
 ![Screenshot 8](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/testopcode.png)
+
