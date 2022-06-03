@@ -75,11 +75,9 @@ void Gui::info_gui() {
 
 void Gui::set_gui() {
 
-
   if (ImGui::BeginMainMenuBar()) {
-
       if(ImGui::BeginMenu("File")){
-          if(ImGui::MenuItem("Load ROM", "Press O")) {
+          if(ImGui::MenuItem("Load ROM", "CTRL+O")) {
 
               char file[1024];
 
@@ -90,7 +88,6 @@ void Gui::set_gui() {
                if (file[strlen(file) - 1] == '\n') {
                    file[strlen(file) - 1] = 0;    
                }
-
                 chip8.loadfile(file);
    }
 
@@ -100,21 +97,21 @@ void Gui::set_gui() {
        }
 
        if (ImGui::BeginMenu("Debug")) {
-        ImGui::MenuItem("Registers","Press R",&flag_active);
-        ImGui::MenuItem("RAM Register","Press G",&mem_reg);
-        ImGui::MenuItem("Resume | Stop Emulation","Press S",&chip8.resume_emulation);
-        ImGui::MenuItem("Disable | Active Menu","Press M",&showmenu);
+        ImGui::MenuItem("Registers","CTRL+R",&flag_active);
+        ImGui::MenuItem("RAM Register","CTRL+G",&mem_reg);
+        ImGui::MenuItem("Resume | Stop Emulation","CTRL+S",&chip8.resume_emulation);
+        ImGui::MenuItem("Disable | Active Menu","CTRL+M",&showmenu);
         ImGui::EndMenu();
 }
 
        if(ImGui::BeginMenu("Video")){
-         ImGui::MenuItem("FullScreen Disable | Active","Press F",&full_screen);
+         ImGui::MenuItem("FullScreen Disable | Active","ALT+ENTER",&full_screen);
          ImGui::EndMenu();
        }
 
 
        if(ImGui::BeginMenu("Audio")){
-         ImGui::MenuItem("Disable | Active","Press V",&chip8.enable_audio);
+         ImGui::MenuItem("Disable | Active","CTRL+V",&chip8.enable_audio);
          ImGui::EndMenu();
        }
 
@@ -141,7 +138,6 @@ void Gui::set_gui() {
        SDL_SetWindowFullscreen(window,SDL_WINDOW_FULLSCREEN);
    } else {
        SDL_SetWindowFullscreen(window,0);
-
    }
 }
 
@@ -156,9 +152,11 @@ void Gui::pop_up_load_file(){
                 fgets(file, sizeof(file), fp);
                   if (file[strlen(file) - 1] == '\n') {
                       file[strlen(file) - 1] = 0;
-                 chip8.loadfile(file);
+                      chip8.loadfile(file);
                }
 }
+
+
 
 
 
@@ -168,9 +166,7 @@ SDL_Event event;
 
   Audio::open();
 
-   load : chip8.loadfile(OPENFILE);
-
-     int wheel;
+  int wheel;
 
  while (chip8.m_event) {
 
@@ -179,7 +175,6 @@ SDL_Event event;
    chip8.execute_instruction();
 
    ImGuiIO& io = ImGui::GetIO();
-
 
 
    if(event.type==SDL_QUIT) {
@@ -228,35 +223,48 @@ if (event.type == SDL_KEYDOWN) {
 }
 
 
-
-switch(event.key.keysym.sym) {
-
-case SDLK_F1: goto load; break;
-
-case key_ascii.R:       if(flag_active == true) { flag_active = false; }
-                    else if (flag_active == false) { flag_active = true; }  break;
-
-case key_ascii.S: if(chip8.resume_emulation == true) { chip8.resume_emulation = false; }
-                        else if (chip8.resume_emulation == false) { chip8.resume_emulation = true; } break;
-
-case key_ascii.M:  if(showmenu == true) { showmenu = false; }
-                        else if (showmenu == false) { showmenu = true; }  break;
-
-case key_ascii.O:  pop_up_load_file(); break;
-
-case key_ascii.G: if(mem_reg == true) { mem_reg = false; }
-                       else if (mem_reg == false) { mem_reg = true; }  break;
-
-case key_ascii.F:  if(full_screen == true) { full_screen = false; }
-                        else if (full_screen == false) { full_screen = true; }  break;
-
-case key_ascii.V:  if(chip8.enable_audio == true) { chip8.enable_audio = false; }
-                        else if (chip8.enable_audio == false) { chip8.enable_audio = true; }  break;
-
-   }
+if((event.key.keysym.sym) == key_ascii.R && ((event.key.keysym.mod & KMOD_LCTRL))) {
+    if(flag_active == true) { flag_active = false; }
+                        else if (flag_active == false) { flag_active = true;}
 }
 
 
+if((event.key.keysym.sym) == key_ascii.S && ((event.key.keysym.mod & KMOD_LCTRL))) {
+    if(chip8.resume_emulation == true) { chip8.resume_emulation = false; }
+                            else if (chip8.resume_emulation == false) { chip8.resume_emulation = true; }
+}
+
+
+if((event.key.keysym.sym) == key_ascii.M && ((event.key.keysym.mod & KMOD_LCTRL))) {
+    if(showmenu == true) { showmenu = false; }
+                            else if (showmenu == false) { showmenu = true; }
+}
+
+
+if((event.key.keysym.sym) == key_ascii.O && ((event.key.keysym.mod & KMOD_LCTRL))) {
+    pop_up_load_file();
+}
+
+
+if((event.key.keysym.sym) == key_ascii.G && ((event.key.keysym.mod & KMOD_LCTRL))) {
+    if(mem_reg == true) { mem_reg = false; }
+                           else if (mem_reg == false) { mem_reg = true; }
+}
+
+
+if((event.key.keysym.sym) == key_ascii.ENTER && ((event.key.keysym.mod & KMOD_LALT))) {
+    if(full_screen == true) { full_screen = false; }
+                            else if (full_screen == false) { full_screen = true; }
+}
+
+
+if((event.key.keysym.sym) == key_ascii.V && ((event.key.keysym.mod & KMOD_LCTRL)))
+{
+    if(chip8.enable_audio == true) { chip8.enable_audio = false; }
+                           else if (chip8.enable_audio == false) { chip8.enable_audio = true;}
+
+   }
+ }
 
 
 

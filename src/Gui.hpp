@@ -16,7 +16,6 @@ SDL_Texture* texture;
 void Init_SDL();
 void Create(int h,int w);
 void Set_Window_Title(std::string title);
-void event(SDL_Event event,std::string OPENFILE);
 void Execute(char* const OPENFILE);
 void pop_up_load_file();
 void Update();
@@ -33,22 +32,20 @@ private:
 
 Chip8 chip8;
 
-/// ascii value key
-union KeyCode_ASCII {
+
+union KeyCode_ASCII {  // ascii value key
     const static char M = 0x6D;
     const static char O = 0x6F;
     const static char R = 0x72;
     const static char S = 0x73;
     const static char G = 0x67;
     const static char V = 0x76;
-    const static char F = 0x66;
+    const static char ENTER = 0x0D;
 };
 
 KeyCode_ASCII key_ascii;
 
-
-
- void memory_register() {
+void memory_register() {
        static MemoryEditor mem_reg;
        mem_reg.DrawWindow("RAM Register",chip8.m_ram.data(),chip8.m_ram.size(),0);
        //mem_reg.DrawWindow("Memory Register",&chip8.m_ram,chip8.m_ram.size(),0);
