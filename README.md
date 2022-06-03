@@ -14,6 +14,7 @@ This emulator supports a debug menu , audio , video and loading ROMs
 
 
 
-For reference there are excellent guides example : https://austinmorlan.com/posts/chip8_emulator/
+For reference there are excellent guides example : 
+https://austinmorlan.com/posts/chip8_emulator/
 Or
 https://tobiasvl.github.io/blog/write-a-chip-8-emulator/
