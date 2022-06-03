@@ -1,6 +1,8 @@
 # Chip8-Emulator
 CHIP-8 is an interpretted programming language developed by Joseph Weisbecker in the mid 70s and was initally used on the COSMAC VIP and Telmac 1800 8-bit microcomputers to make game programming easier. CHIP-8 programs are run using a CHIP-8 virtual machine.
 
+This emulator supports a debug menu , enable disable audio , video go to full screen mode ,Pause mode 'emulation,loading games or menu or hotkeys
+
  ![Screenshot 1](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/pong2.png)
  ![Screenshot 2](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/puzzle.png)
  ![Screenshot 3](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/register.png)
@@ -9,8 +11,6 @@ CHIP-8 is an interpretted programming language developed by Joseph Weisbecker in
  ![Screenshot 6](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/suzieq.png)
  ![Screenshot 7](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/test.png)
  ![Screenshot 8](https://github.com/SuzieQQ/Chip8-Emulator/blob/main/images/testopcode.png)
-
-This emulator supports a debug menu , audio , video and loading ROMs 
 
 
 
